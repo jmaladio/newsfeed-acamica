@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import NavCategory from "../NavCategory/NavCategory";
-import MainView from "../MainView/MainView";
+import MainNavigation from "../../containers/MainNavigation";
 import { categoriesList } from "../../data";
 import "./App.css";
 
@@ -20,20 +20,23 @@ const App = () => {
   const mapRoutes = categoriesList.map((category) => {
     const { id, slug } = category;
 
-    if (!id) return <Route exact path="/" key={id} component={MainView} />;
+    if (!id)
+      return <Route exact path="/" key={id} component={MainNavigation} />;
     else
       return (
-        <Route path={`/categoria/:id/${slug}`} key={id} component={MainView} />
+        <Route
+          path={`/categoria/:id/${slug}`}
+          key={id}
+          component={MainNavigation}
+        />
       );
   });
 
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <NavBar>{mapCategories}</NavBar>
-        <Switch>{mapRoutes}</Switch>
-      </Router>
+      <Header />
+      <NavBar>{mapCategories}</NavBar>
+      <Switch>{mapRoutes}</Switch>
     </div>
   );
 };
