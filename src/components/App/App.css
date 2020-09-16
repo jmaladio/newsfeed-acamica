@@ -64,7 +64,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.nav-bar p {
+.nav-bar a {
   text-decoration: none;
   color: #eee;
   font-weight: 500;

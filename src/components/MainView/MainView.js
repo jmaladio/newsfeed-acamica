@@ -3,9 +3,17 @@ import Card from "../Card/Card";
 import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
 
-const MainView = ({ children }) => {
+const MainView = ({ children, ...rest }) => {
   // dummy variable, placeholder for the state
   const news = { fetched: false, error: false, data: [] };
+
+  // checking for router props
+  console.log(rest);
+  console.log(
+    !rest.match.params.hasOwnProperty("id")
+      ? "id: 0"
+      : "id: " + rest.match.params.id
+  );
 
   const mapNews = () => {
     if (!news.data.length) {
