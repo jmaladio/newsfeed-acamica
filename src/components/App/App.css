@@ -15,6 +15,8 @@ body {
   font-family: "Cabin", sans-serif;
   font-size: 1.6rem;
   margin: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .App {
@@ -52,7 +54,7 @@ body {
   height: 5rem;
 }
 
-.categories-menu {
+.nav-bar {
   flex: 1 1 100%;
   background-color: #e91e63;
   height: 5rem;
@@ -62,7 +64,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.categories-menu a {
+.nav-bar p {
   text-decoration: none;
   color: #eee;
   font-weight: 500;
