@@ -16,7 +16,7 @@ class SearchInput extends React.Component {
 
     return (
       <div>
-        <Link to={`/search/${this.state.input}`}>
+        <Link key={this.state.input} to={`/search/${this.state.input}`}>
           <span onClick={() => onSearchData(this.state.input)}>Search</span>
         </Link>
         <input

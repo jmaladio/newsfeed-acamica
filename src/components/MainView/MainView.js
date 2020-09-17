@@ -5,11 +5,23 @@ import Error from "../Error/Error";
 
 class MainView extends React.Component {
   componentDidMount() {
-    console.log(this.props);
+    // console.log("MainView Props: ", this.props);
+    const { params, path } = this.props.match;
+    const { action } = this.props.history;
+    const { onGetData, onSearchData } = this.props;
 
-    if (this.props.history.action === "POP" && this.props.userSearch === "") {
-      const { id } = this.props.match.params;
-      this.props.onGetData(id);
+    switch (action) {
+      case "POP":
+        console.log("action POP - navegación por URL");
+        if (path === "/") return onGetData(0);
+        if (params.hasOwnProperty("id")) return onGetData(params.id);
+        if (params.hasOwnProperty("string")) return onSearchData(params.string);
+        break;
+      case "PUSH":
+        return console.log("action PUSH - navegación por links");
+      default:
+        console.log("default");
+        break;
     }
   }
 

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { getNewsData } from "../actions/index";
+import { getNewsData, searchNewsData } from "../actions/index";
 import MainView from "../components/MainView/MainView";
 
 const mapStateToProps = (state) => {
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetData: (id) => dispatch(getNewsData(id))
+  onGetData: (id) => dispatch(getNewsData(id)),
+  onSearchData: (str) => dispatch(searchNewsData(str))
 });
 
 const MainNavigation = connect(mapStateToProps, mapDispatchToProps)(MainView);

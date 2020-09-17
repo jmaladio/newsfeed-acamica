@@ -36,6 +36,7 @@ export const getNewsData = (categoryID) => {
     dispatch(clearData());
     dispatch(loadingError(false));
     dispatch(loadingInProgress(true));
+    dispatch(userSearch(""));
     if (!categoryID) {
       const today = new Date(new Date().valueOf() - 10800000)
         .toISOString()
