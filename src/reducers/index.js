@@ -20,7 +20,7 @@ const newsData = (state = [], action) => {
   switch (action.type) {
     case "LOADING_SUCCESS":
       return action.payload;
-    case "CLEAR_REPOS":
+    case "CLEAR_DATA":
       return [];
     default:
       return state;

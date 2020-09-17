@@ -3,7 +3,6 @@ import { getNewsData } from "../actions/index";
 import MainView from "../components/MainView/MainView";
 
 const mapStateToProps = (state) => {
-  console.log(state, "mapStatetoProps");
   return {
     fetched: !state.loadingInProgress,
     error: state.loadingError,
@@ -11,9 +10,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {
-  getNewsData
-};
+const mapDispatchToProps = (dispatch) => ({
+  onGetData: (id) => dispatch(getNewsData(id))
+});
 
 const MainNavigation = connect(mapStateToProps, mapDispatchToProps)(MainView);
 

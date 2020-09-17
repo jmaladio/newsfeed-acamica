@@ -1,24 +1,31 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "../Card/Card";
 import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
 
-const MainView = (props) => {
-  // checking for router props
-  const { fetched, error, data, getNewsData } = props;
-  const { id } = props.match.params;
-  useEffect(() => getNewsData(id), [getNewsData, id]);
-
-  const mapNews = () => {
-    if (data === null) {
-      if (fetched === false && error === false) return <Loading />;
-      else if (fetched === false && error === true) return <Error />;
-    } else {
-      return data.map((newsData) => <Card data={newsData} />);
+class MainView extends React.Component {
+  componentDidMount() {
+    if (!this.props.fetched) {
+      const { id } = this.props.match.params;
+      this.props.onGetData(id);
     }
-  };
+  }
 
-  return <main className="main-view">{mapNews()}</main>;
-};
+  render() {
+    const { fetched, error, data } = this.props;
+
+    const mapNews = () => {
+      console.log("is fetched?", fetched);
+      if (!data.length) {
+        if (error) return <Error />;
+        else return <Loading />;
+      } else {
+        return data.map((newsData) => <Card data={newsData} />);
+      }
+    };
+
+    return <main className="main-view">{mapNews()}</main>;
+  }
+}
 
 export default MainView;

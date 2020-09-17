@@ -1,22 +1,12 @@
 import React from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Header from "../Header/Header";
-import NavBar from "../NavBar/NavBar";
-import NavCategory from "../NavCategory/NavCategory";
+import NavNavigation from "../../containers/NavNavigation";
 import MainNavigation from "../../containers/MainNavigation";
 import { categoriesList } from "../../data";
 import "./App.css";
 
 const App = () => {
-  const mapCategories = categoriesList.map((category) => {
-    const { name, id, slug } = category;
-    return (
-      <Link key={id} to={!id ? "/" : `/categoria/${id}/${slug}`}>
-        <NavCategory id={id} key={id} name={name} />
-      </Link>
-    );
-  });
-
   const mapRoutes = categoriesList.map((category) => {
     const { id, slug } = category;
 
@@ -33,9 +23,9 @@ const App = () => {
   });
 
   return (
-    <div className="App">
+    <div className="App flex-row">
       <Header />
-      <NavBar>{mapCategories}</NavBar>
+      <NavNavigation categories={categoriesList} />
       <Switch>{mapRoutes}</Switch>
     </div>
   );

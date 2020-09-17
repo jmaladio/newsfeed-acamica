@@ -18,15 +18,19 @@ export const loadingError = (bool) => ({
   error: bool
 });
 
+export const clearData = () => ({
+  type: "CLEAR_DATA"
+});
+
 const grabNewsWithPicture = (arr) => {
   return arr.filter((el) => el.img_url !== null).slice(0, 10);
 };
 
 export const getNewsData = (categoryID) => {
   return (dispatch) => {
+    dispatch(clearData());
     dispatch(loadingError(false));
     dispatch(loadingInProgress(true));
-
     if (!categoryID) {
       const today = new Date(new Date().valueOf() - 10800000)
         .toISOString()
@@ -40,7 +44,6 @@ export const getNewsData = (categoryID) => {
         .then((res) => res.json())
         .then((array) => grabNewsWithPicture(array))
         .then((news) => {
-          console.log(news);
           return dispatch(loadingSuccess(news));
         });
     } else {
