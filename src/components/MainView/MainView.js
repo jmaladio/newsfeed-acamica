@@ -5,22 +5,25 @@ import Error from "../Error/Error";
 
 class MainView extends React.Component {
   componentDidMount() {
-    if (!this.props.fetched) {
+    console.log(this.props);
+
+    if (this.props.history.action === "POP" && this.props.userSearch === "") {
       const { id } = this.props.match.params;
       this.props.onGetData(id);
     }
   }
 
   render() {
-    const { fetched, error, data } = this.props;
+    const { error, data } = this.props;
 
     const mapNews = () => {
-      console.log("is fetched?", fetched);
       if (!data.length) {
         if (error) return <Error />;
         else return <Loading />;
       } else {
-        return data.map((newsData) => <Card data={newsData} />);
+        return data.map((newsData, index) => (
+          <Card data={newsData} key={index} />
+        ));
       }
     };
 

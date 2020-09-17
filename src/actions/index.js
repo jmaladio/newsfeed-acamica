@@ -22,6 +22,11 @@ export const clearData = () => ({
   type: "CLEAR_DATA"
 });
 
+export const userSearch = (str) => ({
+  type: "USER_SEARCH",
+  payload: str
+});
+
 const grabNewsWithPicture = (arr) => {
   return arr.filter((el) => el.img_url !== null).slice(0, 10);
 };
@@ -56,5 +61,23 @@ export const getNewsData = (categoryID) => {
         .then((array) => grabNewsWithPicture(array))
         .then((news) => dispatch(loadingSuccess(news)));
     }
+  };
+};
+
+export const searchNewsData = (string) => {
+  return (dispatch) => {
+    dispatch(clearData());
+    dispatch(loadingError(false));
+    dispatch(loadingInProgress(true));
+    dispatch(userSearch(string));
+
+    fetch(API_URL + "/search/" + string)
+      .then((res) => {
+        loadingInProgress(false);
+        return res;
+      })
+      .then((res) => res.json())
+      .then((array) => grabNewsWithPicture(array))
+      .then((news) => dispatch(loadingSuccess(news)));
   };
 };

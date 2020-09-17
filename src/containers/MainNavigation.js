@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
   return {
     fetched: !state.loadingInProgress,
     error: state.loadingError,
-    data: state.newsData
+    data: state.newsData,
+    userSearch: state.userSearch
   };
 };
 

@@ -26,7 +26,10 @@ const App = () => {
     <div className="App flex-row">
       <Header />
       <NavNavigation categories={categoriesList} />
-      <Switch>{mapRoutes}</Switch>
+      <Switch>
+        {mapRoutes}
+        <Route path="/search/:string" component={MainNavigation} />
+      </Switch>
     </div>
   );
 };
