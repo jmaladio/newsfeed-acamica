@@ -26,9 +26,20 @@ const App = () => {
     <div className="App flex-row">
       <Header />
       <NavNavigation categories={categoriesList} />
-      <Switch>
+      {/* <Switch>
         {mapRoutes}
-        <Route path="/search/:string" component={MainNavigation} />
+        <Route
+          path="/search/:string"
+          render={(routeProps) => (
+            <MainNavigation {...routeProps} key={Math.random() * 10000000} />
+          )}
+        />
+      </Switch> */}
+      <Switch>
+        <Route exact path="/" component={MainNavigation} />
+        <Route path="/categoria/:id" component={MainNavigation} />
+        <Route path="/search/:text" component={MainNavigation} />
+        <Route path="/:string" component={MainNavigation} />
       </Switch>
     </div>
   );

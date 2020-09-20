@@ -1,7 +1,6 @@
 import { API_URL } from "../data";
 
 export const loadingSuccess = (data) => {
-  console.log(data);
   return {
     type: "LOADING_SUCCESS",
     payload: data
@@ -34,9 +33,9 @@ const grabNewsWithPicture = (arr) => {
 export const getNewsData = (categoryID) => {
   return (dispatch) => {
     dispatch(clearData());
+    dispatch(userSearch(""));
     dispatch(loadingError(false));
     dispatch(loadingInProgress(true));
-    dispatch(userSearch(""));
     if (!categoryID) {
       const today = new Date(new Date().valueOf() - 10800000)
         .toISOString()
@@ -67,10 +66,10 @@ export const getNewsData = (categoryID) => {
 
 export const searchNewsData = (string) => {
   return (dispatch) => {
-    dispatch(clearData());
+    // dispatch(clearData());
+    dispatch(userSearch(string));
     dispatch(loadingError(false));
     dispatch(loadingInProgress(true));
-    dispatch(userSearch(string));
 
     fetch(API_URL + "/search/" + string)
       .then((res) => {

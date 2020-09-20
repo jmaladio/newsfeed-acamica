@@ -50,8 +50,75 @@ body {
   font-family: "Alfa Slab One", sans-serif;
 }
 
+.search-input-container {
+  height: 5rem;
+  width: 25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-icon {
+  background-color: #e91e63;
+  height: 100%;
+  flex-basis: 5rem;
+  position: relative;
+}
+
+.search-icon a svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-button {
+  height: 5rem;
+  flex-basis: 8rem;
+}
+
+.search-button input {
+  height: 100%;
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #e91e63;
+  border: none;
+  transition: background-color 0.2s ease;
+  transition: transform 0.1s ease-out;
+}
+
+.search-button input:hover {
+  background-color: #7945f3;
+}
+
+.search-button input:focus {
+  outline: none;
+}
+
+.search-button input:active {
+  transform: scale(0.95);
+}
+
 .search-input {
   height: 5rem;
+  flex-basis: 17rem;
+}
+
+.search-input input {
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: darkslategrey;
+  border: none;
+  background-color: #eee;
+}
+
+.search-input input:focus {
+  outline: none;
 }
 
 .nav-bar {
