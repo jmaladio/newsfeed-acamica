@@ -112,7 +112,9 @@ class SearchInput extends React.Component {
             onKeyPress={(e) => this.handleUserSearch(e)}
           />
         </div>
-        {redirect && <Redirect to={redirectTo} push={true} />}
+        {redirect && (
+          <Redirect to={redirectTo} push={true} key={Math.random() * 1000000} />
+        )}
       </div>
     );
   }

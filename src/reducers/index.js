@@ -27,18 +27,8 @@ const newsData = (state = [], action) => {
   }
 };
 
-const userSearch = (state = "", action) => {
-  switch (action.type) {
-    case "USER_SEARCH":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
 const rootReducer = {
   newsData,
-  userSearch,
   loadingError,
   loadingInProgress
 };

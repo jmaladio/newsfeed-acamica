@@ -39,7 +39,7 @@ const App = () => {
         <Route exact path="/" component={MainNavigation} />
         <Route path="/categoria/:id" component={MainNavigation} />
         <Route path="/search/:text" component={MainNavigation} />
-        <Route path="/:string" component={MainNavigation} />
+        {/* <Route path="/:string" component={MainNavigation} /> */}
       </Switch>
     </div>
   );

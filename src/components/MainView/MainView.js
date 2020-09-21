@@ -2,65 +2,58 @@ import React from "react";
 import Card from "../Card/Card";
 import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
-
-const historyAction = (props) => {
-  const { params, url } = props.match;
-  const { action } = props.history;
-  const { onGetData, onSearchData } = props;
-
-  switch (action) {
-    case "POP":
-      console.log("action POP - navegación por URL");
-      if (url === "/") return onGetData(0);
-      if (url.slice(0, 4) === "/cat") return onGetData(params.id);
-      if (url.slice(0, 7) === "/search") return onSearchData(params.string);
-      // if (params.hasOwnProperty("id")) return onGetData(params.id);
-      // if (params.hasOwnProperty("string")) return onSearchData(params.string);
-      break;
-    case "PUSH":
-      return console.log("action PUSH - navegación por links");
-    default:
-      console.log("default");
-      break;
-  }
-};
-
-class MainViewContainer extends React.Component {
+export class MainViewContainer extends React.Component {
   componentDidMount() {
-    // console.log("MainViewContainer Props: ", this.props);
-    historyAction(this.props);
+    console.log("mount", this.props);
+
+    this.handleURLNav();
   }
 
+  handleURLNav = () => {
+    const PATH_HOME = "/";
+    const PATH_CATEGORY = "/categoria/:id";
+    const PATH_SEARCH = "/search/:text";
+    if (this.props.match.path === PATH_HOME) {
+      if (!this.props.location.state || !this.props.location.state.category) {
+        console.log("empty");
+        this.props.onGetData(0);
+      }
+    }
+    if (this.props.match.path === PATH_CATEGORY) {
+      if (!this.props.location.state || this.props.userSearch) {
+        console.log("empty");
+        this.props.onGetData(this.props.match.params.id);
+      }
+    }
+    if (this.props.match.path === PATH_SEARCH) {
+      console.log("text");
+      const state = {
+        search: this.props.match.params.text
+      };
+      this.props.location.state = { ...state };
+      this.props.onSearchData(this.props.match.params.text);
+    }
+  };
+
+  componentDidUpdate(prevProps) {
+    console.log("update", this.props);
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.props.onGetData(this.props.match.params.id);
+    }
+    if (prevProps.match.params.text !== this.props.match.params.text) {
+      this.props.onSearchData(this.props.match.params.text);
+    }
+  }
   render() {
-    return <MainView {...this.props} />;
+    const { data, error } = this.props;
+    return (
+      <MainView data={data} error={error} key={Math.random() * 1000000000} />
+    );
   }
 }
 
 const MainView = (props) => {
-  // componentDidMount() {
-  //   console.log("MainView Props: ", this.props);
-  //   const { params, url } = this.props.match;
-  //   const { action } = this.props.history;
-  //   const { onGetData, onSearchData, userSearch } = this.props;
-
-  //   switch (action) {
-  //     case "POP":
-  //       console.log("action POP - navegación por URL");
-  //       if (url === "/") return onGetData(0);
-  //       if (url === `/search/${userSearch}`) return onSearchData(userSearch);
-  //       if (params.hasOwnProperty("id")) return onGetData(params.id);
-  //       if (params.hasOwnProperty("string")) return onSearchData(params.string);
-  //       break;
-  //     case "PUSH":
-  //       return console.log("action PUSH - navegación por links");
-  //     default:
-  //       console.log("default");
-  //       break;
-  //   }
-  // }
-
-  console.log("props", props);
-  const { error, data } = props;
+  const { data, error } = props;
 
   const mapNews = () => {
     if (!data.length) {

@@ -1,13 +1,12 @@
 import { connect } from "react-redux";
 import { getNewsData, searchNewsData } from "../actions/index";
-import { ComponenteContainer } from "../components/ComponenteContainer/ComponenteContainer";
+import { MainViewContainer } from "../components/MainView/MainView";
 
 const mapStateToProps = (state) => {
   return {
     fetched: !state.loadingInProgress,
     error: state.loadingError,
-    data: state.newsData,
-    userSearch: state.userSearch
+    data: state.newsData
   };
 };
 
@@ -19,6 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
 const MainNavigation = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ComponenteContainer);
+)(MainViewContainer);
 
 export default MainNavigation;

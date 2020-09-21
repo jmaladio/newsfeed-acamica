@@ -21,11 +21,6 @@ export const clearData = () => ({
   type: "CLEAR_DATA"
 });
 
-export const userSearch = (str) => ({
-  type: "USER_SEARCH",
-  payload: str
-});
-
 const grabNewsWithPicture = (arr) => {
   return arr.filter((el) => el.img_url !== null).slice(0, 10);
 };
@@ -33,7 +28,6 @@ const grabNewsWithPicture = (arr) => {
 export const getNewsData = (categoryID) => {
   return (dispatch) => {
     dispatch(clearData());
-    dispatch(userSearch(""));
     dispatch(loadingError(false));
     dispatch(loadingInProgress(true));
     if (!categoryID) {
@@ -66,18 +60,19 @@ export const getNewsData = (categoryID) => {
 
 export const searchNewsData = (string) => {
   return (dispatch) => {
-    // dispatch(clearData());
-    dispatch(userSearch(string));
+    dispatch(clearData());
     dispatch(loadingError(false));
     dispatch(loadingInProgress(true));
 
-    fetch(API_URL + "/search/" + string)
-      .then((res) => {
-        loadingInProgress(false);
-        return res;
-      })
-      .then((res) => res.json())
-      .then((array) => grabNewsWithPicture(array))
-      .then((news) => dispatch(loadingSuccess(news)));
+    if (string) {
+      fetch(API_URL + "/search/" + string)
+        .then((res) => {
+          loadingInProgress(false);
+          return res;
+        })
+        .then((res) => res.json())
+        .then((array) => grabNewsWithPicture(array))
+        .then((news) => dispatch(loadingSuccess(news)));
+    }
   };
 };
