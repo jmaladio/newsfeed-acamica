@@ -4,8 +4,8 @@ import NavCategory from "../NavCategory/NavCategory";
 
 const NavBar = ({ categories, onGetData }) => {
   const mapCategories = categories.map((category) => {
-    const { name, id, slug } = category;
-    const pathname = !id ? "/" : `/categoria/${id}/${slug}`;
+    const { name, id } = category;
+    const pathname = !id ? "/" : `/categoria/${id}`;
     const linkTo = {
       pathname,
       state: { category: id }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import SearchIcon from "@material-ui/icons/Search";
 
 // class SearchInput extends React.Component {
 //   state = {
