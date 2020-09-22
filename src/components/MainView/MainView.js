@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../Card/Card";
 import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
-export class MainViewContainer extends React.Component {
+class MainViewLogicContainer extends React.Component {
   componentDidMount() {
     console.log("mount", this.props);
 
@@ -75,4 +75,4 @@ const MainView = (props) => {
   return <main className="main-view">{mapNews()}</main>;
 };
 
-export default MainViewContainer;
+export default MainViewLogicContainer;

@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
   onSearchData: (str) => dispatch(searchNewsData(str))
 });
 
-const SearchContainer = connect(
+const SearchPropsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SearchInput);
 
-export default SearchContainer;
+export default SearchPropsContainer;

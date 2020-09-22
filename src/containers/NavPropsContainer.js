@@ -6,5 +6,5 @@ const mapDispatchToProps = (dispatch) => ({
   onGetData: (id) => dispatch(getNewsData(id))
 });
 
-const NavNavigation = connect(null, mapDispatchToProps)(NavBar);
-export default NavNavigation;
+const NavPropsContainer = connect(null, mapDispatchToProps)(NavBar);
+export default NavPropsContainer;

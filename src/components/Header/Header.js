@@ -1,11 +1,10 @@
 import React from "react";
-import SearchContainer from "../../containers/SearchContainer";
 
-const Header = () => {
+const Header = ({ render }) => {
   return (
     <header className="header">
       <h1 className="logo">News</h1>
-      <SearchContainer />
+      {render()}
     </header>
   );
 };
