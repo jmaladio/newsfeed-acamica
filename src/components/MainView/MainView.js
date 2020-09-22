@@ -37,6 +37,12 @@ export class MainViewContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     console.log("update", this.props);
+    if (
+      !Object.keys(prevProps.match.params).length &&
+      !this.props.match.params.id
+    ) {
+      console.log("get home!");
+    }
     if (prevProps.match.params.id !== this.props.match.params.id) {
       this.props.onGetData(this.props.match.params.id);
     }
