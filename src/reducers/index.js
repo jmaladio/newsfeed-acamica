@@ -10,7 +10,7 @@ const loadingError = (state = false, action) => {
 const loadingInProgress = (state = true, action) => {
   switch (action.type) {
     case "LOADING_IN_PROGRESS":
-      return !action.loading;
+      return action.loading;
     default:
       return state;
   }
@@ -30,7 +30,7 @@ const newsData = (state = [], action) => {
 const rootReducer = {
   newsData,
   loadingError,
-  loadingInProgress
+  loadingInProgress,
 };
 
 export default rootReducer;
